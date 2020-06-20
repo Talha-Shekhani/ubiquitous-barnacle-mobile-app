@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput,TouchableOpacity,Dimensions } from 'r
 import HeaderAfter from '../HeaderAfterSignIn'
 import IconAnt from 'react-native-vector-icons/AntDesign'; 
 import { useNavigation, useTheme } from '@react-navigation/native'
+import HeaderTitle from '../HeaderTitle'
 import { RFValue } from 'react-native-responsive-fontsize'
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -13,53 +14,19 @@ export default function UpcomingAppoinment(){
     return(
         <View style={{width:WIDTH, backgroundColor: "white",flex:1,display: 'flex',paddingHorizontal: RFValue(20)}}>
             <HeaderAfter/>
-            <Text style={{  marginTop: RFValue(-29),fontSize: RFValue(30),fontWeight: "bold", }}>
-                What are you looking for?
-                </Text>
-                
-                <TextInput
-                    placeholder="Search by speciality or"
-                    underlineColorAndroid='transparent'
-                    style={styles.TextInputStyleClass}
-                />
 
-                <View style={styles.childView}>
-                <View style={{ flexDirection: "row",alignItems:'center',justifyContent:'space-between' }}>
-                    
-                    <Text style={{  fontSize: RFValue(25), fontWeight: "bold", }}>
-                        Upcoming Appoinment
-                     </Text>
-                     
-                     <IconAnt  name="calendar" size={35} color="#1da1f2"  style={{ marginLeft : RFValue(30)}}  />
+            <View style={{ flexDirection: "row",alignItems:'center' }}>
+                <View style={{ width: RFValue(20), borderBottomWidth: RFValue(5), borderBottomColor: "yellow" }}>
                 </View>
-
-                <View style={styles.textImgView}>
-                        <IconAnt  name="clockcircleo" size={25} color="green" />
-                    <Text style={{  fontSize: RFValue(18),marginLeft:RFValue(18) }}>
-                        HCP's title and name
-                    </Text>
+                <View style={{ width: RFValue(20), borderBottomWidth: RFValue(5), borderBottomColor: "blue", marginLeft: RFValue(8) }}>
                 </View>
-                <View style={styles.textImgView}>
-                        <IconAnt  name="clockcircleo" size={25} color="green" />
-                    <Text style={{  fontSize: RFValue(18),marginLeft:RFValue(18) }}>
-                        june 04 2020 at 4:30 pm (PST)
-                    </Text>
+                <View style={{ width: RFValue(20), borderBottomWidth: RFValue(5), borderBottomColor: "green", marginLeft: RFValue(8) }}>
                 </View>
-
-                <TouchableOpacity
-                    style={styles.SubmitButtonStyle}
-                    activeOpacity={.5}
-                    onPress={()=>{navigation.navigate("BookingAppoinment")}}
-                >
-
-                    <Text style={styles.TextStyle}> View Appoinment</Text>
-
-            </TouchableOpacity>  
-                </View>    
-
-
+                <View style={{ width: RFValue(20), borderBottomWidth: RFValue(5), borderBottomColor: "red", marginLeft: RFValue(8) }}>
+                </View>
+            </View>
                 
-                
+            <HeaderTitle/>
         </View>
 
 

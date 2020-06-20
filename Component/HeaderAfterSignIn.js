@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image,Dimensions } from 'react-native';
 import { useNavigation, useTheme } from '@react-navigation/native'
 import IconMaterial from 'react-native-vector-icons/MaterialIcons'; 
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
 
 
 export default function HeaderAfterSignin() {
@@ -9,7 +11,7 @@ export default function HeaderAfterSignin() {
   const navigation = useNavigation();
   return (
     
-            <View style={{flexDirection: "row", margin: 10}}>
+            <View style={{flexDirection: "row",}}>
             <Image source={require('../assets/tibLogoPng.png')}
               style={{width: 150, height:100,}}/>
                 

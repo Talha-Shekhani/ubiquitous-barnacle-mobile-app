@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
-import { TextInput, Checkbox } from 'react-native-paper';
+import React, { useState, useEffect } from 'react';
 import Header from '../Header'
-import { View, Picker, Image, KeyboardAvoidingView, TouchableOpacity, Text, Button } from 'react-native';
+import { View, Picker, StyleSheet, CheckBox, TextInput,Image, KeyboardAvoidingView, TouchableOpacity, Text, Button, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import IconFont from 'react-native-vector-icons/FontAwesome'; 
+import IconFont from 'react-native-vector-icons/FontAwesome';
+import IconEnt from 'react-native-vector-icons/Entypo'; 
 import DatePicker from 'react-native-datepicker'
+import Footer from './Footer'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-// import DateTimePickerModal from "react-native-modal-datetime-picker";
-// import PickerCheckBox from 'react-native-picker-checkbox';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { RFValue } from 'react-native-responsive-fontsize'
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
+import { useForm } from "react-hook-form";
 
 export default function SignUp() {
 
-    const navigation = useNavigation();
+    const { handleSubmit, register, errors } = useForm();
+    const onSubmit = values => console.log(values);
 
+    const navigation = useNavigation();
+    const [form,setForm]= useState({
+        lastName: '',
+        firstName: ''
+    })
+    
     const [text, setText] = useState("")
     const [text2, setText2] = useState("")
     const [text3, setText3] = useState("")
@@ -21,133 +32,188 @@ export default function SignUp() {
     const [text6, setText6] = useState("")
     const [selectedValue, setSelectedValue] = useState("Select a country");
     const [selectedValue2, setSelectedValue2] = useState("Select a city");
+    const [selectedValueStates, setSelectedValueStates] = useState("Select a State");
     const [selectedValueGender, setSelectedValueGender] = useState("Gender");
     const [selectedValueTitle, setSelectedValueTitle] = useState("Gender");
     const [setDate,setDataValue] = useState("")
+   
+    useEffect(() => {
+        console.log(form)
+    },[form])
 
     return (
-        <KeyboardAwareScrollView>
-        
-        <View style={{backgroundColor: "white", flex:1}}>
-    {console.disableYellowBox = true}
+        <KeyboardAwareScrollView style={{backgroundColor: "white"}} >
+        <View style={{ width: WIDTH, backgroundColor: "white", flex: 1, display: 'flex', paddingHorizontal: RFValue(20) }}>
+        <View style={styles.textWrapper}>
+            {console.disableYellowBox = true}
             <Header />
-            <Text style={{fontSize: 23,fontWeight: "bold", marginLeft: 5  }}>
+            <Text style={{ fontSize: RFValue(23), fontWeight: "bold", }}>
                 Account Information</Text>
             <View >
-            <Picker
-                selectedValue={selectedValueTitle}
-                onValueChange={(itemValue, itemIndex) => setSelectedValueTitle(itemValue)}
-            >
-                <Picker.Item label="Title" value="Title" />
-                <Picker.Item label="Mr" value="Mr" />
-                <Picker.Item label="Mrs" value="Mrs" />
-                <Picker.Item label="Ms" value="Ms" />
 
-            </Picker>
+                <Picker
+                    selectedValue={selectedValueTitle}
+                    onValueChange={(itemValue, itemIndex) => setSelectedValueTitle(itemValue)}
+                >
+                    <Picker.Item label="Title" value="Title" />
+                    <Picker.Item label="Mr" value="Mr" />
+                    <Picker.Item label="Mrs" value="Mrs" />
+                    <Picker.Item label="Ms" value="Ms" />
 
-            <TextInput
-                style={{ margin: 10 }}
-                label='First Name'
-                value={text2}
-                onChangeText={text => setText2(text)}
-            /><TextInput
-                style={{ margin: 10 }}
-                label='Last Name'
-                value={text3}
-                onChangeText={text => setText3(text)}
-            />
-            {/* <PickerCheckBox
-                data={items}
-                headerComponent={<Text style={{ fontSize: 25 }} >Select a City</Text>}
-                OnConfirm={(pItems) => handleConfirm(pItems)}
-                ConfirmButtonTitle='OK'
-                DescriptionField='itemDescription'
-                KeyField='itemKey'
-                placeholder='Select a City'
-                arrowColor='#FFD740'
-                arrowSize={3}
-                placeholderSelectedItems='itemDescription'
+                </Picker>
+
+                <View style={{ width: "100%", borderBottomWidth: RFValue(2), borderBottomColor: "black" }}>
+                </View>
+
+                <TextInput style={styles.textInput}
+                    onChangeText={(text) => setForm({...form, firstName: text})}
+                    placeholder={"First Name"}
+                />
+
+                <TextInput style={styles.textInput}
+                    onChangeText={(text) => setForm({...form, lastName: text})}
+                    placeholder={"Last Name"}
+                />
+
+                <Picker
+                    selectedValue={selectedValue}
+                    onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+                >
+                    <Picker.Item label="Select a country" value="Select a country" />
+                    <Picker.Item label="Pakistan" value="Pakistan" />
+                    <Picker.Item label="UK" value="UK" />
+                    <Picker.Item label="Chaina" value="Chaina" />
+
+                </Picker>
+
+                <View style={{ width: "100%", borderBottomWidth: RFValue(2), borderBottomColor: "black" }}>
+                </View>
+
+                <Picker
+                    selectedValue={selectedValueStates}
+                    onValueChange={(itemValue, itemIndex2) => setSelectedValueStates(itemValue)}
+                >
+                    <Picker.Item label="Select a State" value="Select a State" />
+                    <Picker.Item label="Sindh" value="Sindh" />
+                    <Picker.Item label="Balochistan" value="Balohistan" />
+                    <Picker.Item label="KPK" value="KPK" />
+                    <Picker.Item label="Punjab" value="Punjab" />
+
+                </Picker>
+
+                <View style={{ width: "100%", borderBottomWidth: RFValue(2), borderBottomColor: "black", marginBottom: RFValue(5) }}>
+                </View>
+
+                <Picker
+                    selectedValue={selectedValue2}
+                    onValueChange={(itemValue, itemIndex2) => setSelectedValue2(itemValue)}
+                >
+                    <Picker.Item label="Select a city" value="Select a city" />
+                    <Picker.Item label="Karachi" value="Karachi" />
+                    <Picker.Item label="Lahore" value="Lahore" />
+                    <Picker.Item label="Multan" value="Multan" />
+
+                </Picker>
+
+                <View style={{ width: "100%", borderBottomWidth: RFValue(2), borderBottomColor: "black", marginBottom: RFValue(5) }}>
+                </View>
+
+                <TextInput style={styles.textInput}
+                    onChangeText={(text) => console.log(text)}
+                    placeholder={"Email Address"}
+                />
+                <View style={{marginTop: RFValue(5)}}>
+                </View>
+                    {/* <Text style={{ fontSize: RFValue(20),  }}>
+                        Phone Number
+                    </Text>
+                     */}
+                    {/* <View style={{ flexDirection: "row",alignItems:'center',justifyContent:'space-around' }}>
+                    <IconEnt name="plus" size={30} color="black"
+                    />
+                    <TextInput
+                        style={{ backgroundColor: "#f5f4f2",alignContent : "center" ,justifyContent: "center" , fontWeight: "500", fontSize: RFValue(15), height: RFValue(40), width: "20%", borderWidth: RFValue(1), borderColor: "grey",  }}
+                    />
+                        <TextInput
+                        style={{ backgroundColor: "#f5f4f2",alignContent : "center" ,justifyContent: "center" , fontWeight: "500", fontSize: RFValue(15), height: RFValue(40), width: "60%", borderWidth: RFValue(1), borderColor: "grey",  }}
+                        
+                    />
+                    </View> */}
+                <View style={{marginTop: RFValue(5)}}>
+                </View>
+                 
                 
-            /> */}
+                <DatePicker
+                    style={{ width: RFValue(400) }}
+                    date={setDate}
+                    mode="date"
+                    placeholder="Date of Birth"
+                    format="YYYY-MM-DD"
+                    minDate="1960-05-01"
+                    maxDate="2020-06-01"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    androidMode="spinner"
+                    customStyles={{
+                        dateIcon: {
+                            position: 'absolute',
+                            left: RFValue(0),
+                            top: RFValue(4),
+                        },
+                        dateInput: {
+                            marginRight: RFValue(20)
+                        }
+                        // ... You can check the source to find the other keys.
+                    }}
+                    onDateChange={(date) => { setDataValue(date) }}
 
-            <Picker
-                selectedValue={selectedValue}
-                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-            >
-                <Picker.Item label="Select a country" value="Select a country" />
-                <Picker.Item label="Pakistan" value="Pakistan" />
-                <Picker.Item label="UK" value="UK" />
-                <Picker.Item label="Chaina" value="Chaina" />
+                />
 
-            </Picker>
-            <Picker
-                selectedValue={selectedValue2}
-                onValueChange={(itemValue, itemIndex2) => setSelectedValue2(itemValue)}
-            >
-                <Picker.Item label="Select a city" value="Select a city" />
-                <Picker.Item label="Karachi" value="Karachi" />
-                <Picker.Item label="Lahore" value="Lahore" />
-                <Picker.Item label="Multan" value="Multan" />
 
-            </Picker>
-            
-            <TextInput
-                style={{ margin: 10 }}
-                label='Email Address'
-                value={text4}
-                onChangeText={text => setText4(text)}
-            />
+                <Picker
+                    selectedValue={selectedValueGender}
+                    onValueChange={(itemValue, itemIndex) => setSelectedValueGender(itemValue)}
+                >
+                    <Picker.Item label="Select a Gender" value="Select a Gender" />
+                    <Picker.Item label="Male" value="Male" />
+                    <Picker.Item label="Female" value="Female" />
+                    <Picker.Item label="Do not wish to disclose" value="Do not wish to disclose" />
 
-             <DatePicker
-            style={{width: 400}}
-         date={setDate}
-        mode="date"
-        placeholder="Date of Birth"
-        format="YYYY-MM-DD"
-        minDate="1960-05-01"
-        maxDate="2020-06-01"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"
-        androidMode="spinner"
-        customStyles={{
-          dateIcon: {
-            position: 'absolute',
-            left: 0,
-            top: 4,
-            marginLeft: 0
-          },
-          dateInput: {
-            marginLeft: 36
-          }
-          // ... You can check the source to find the other keys.
-        }}
-        onDateChange={(date) => { setDataValue(date)  }}
+                </Picker>
 
-      />
-            
+                <View style={{ width: "100%", borderBottomWidth: RFValue(2), borderBottomColor: "black", marginBottom: RFValue(10) }}>
+                </View>
 
-            <Picker
-                selectedValue={selectedValueGender}
-                onValueChange={(itemValue, itemIndex) => setSelectedValueGender(itemValue)}
-            >
-                <Picker.Item label="Select a Gender" value="Select a Gender" />
-                <Picker.Item label="Male" value="Male" />
-                <Picker.Item label="Female" value="Female" />
-                <Picker.Item label="Do not wish to disclose" value="Do not wish to disclose" />
-
-            </Picker>
             </View>
-            <View style={{ flexDirection: "row", justifyContent: "space-around", }}>
-            
-                <IconFont name="arrow-circle-left" size={50} color="#2c97c9" 
+            <View style={{ flexDirection: "row", justifyContent: "space-between", }}>
+
+                <IconFont name="arrow-circle-left" size={50} color="#2c97c9"
                     onPress={() => { navigation.navigate("SignPage") }}
-            />
-                <IconFont name="arrow-circle-right" size={50} color="#2c97c9" 
+                />
+                <IconFont name="arrow-circle-right" size={50} color="#2c97c9"
                     onPress={() => { navigation.navigate("password") }}
-            />
+                />
+            </View>
+            <View style={{marginTop: 15}}></View>
+            <Footer/>
             </View>
         </View>
-        </KeyboardAwareScrollView>
+        
+         </KeyboardAwareScrollView>
         
     )
 }
+const styles = StyleSheet.create({
+
+    
+    textInput: {
+        borderBottomColor: 'black', 
+        borderBottomWidth: RFValue(2), 
+            
+    },
+    container: { flex: 1 },
+  textWrapper: {
+    height: hp('100%'), // 70% of height device screen
+    width: wp('90%')   // 80% of width device screen
+  },
+});

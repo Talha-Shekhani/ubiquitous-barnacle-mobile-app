@@ -18,9 +18,11 @@ import ForgetPassword from './Component/Navigation/ForgetPassword'
 import ForgetPIn from './Component/Navigation/ForgetPIn'
 import TermsCondition from './Component/Navigation/TermsAndCondition'
 import UpcomingAppoinment from './Component/Navigation/UpcomingAppoinment'
-import BookingAccount from './Component/Navigation/BookAppoinment'
-import BookingAppoinment from './Component/Navigation/BookAppoinment';
-
+import BookingAppoinment from './Component/Navigation/BookAppoinment'
+import Connect from './Component/Navigation/Connect' 
+import childAppoinment from './Component/Navigation/ChildAppoinment'
+import AppoinmentSomeone from './Component/Navigation/AppoinmentSomeone'
+import Preception from './Component/Navigation/Preception'
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -52,7 +54,7 @@ const rootHome = ()=>{
         },
       })}
       tabBarOptions={{
-        activeTintColor: '#bd1515',
+        activeTintColor: 'blue',
         inactiveTintColor: 'grey',
       }}
     >
@@ -83,7 +85,10 @@ export default function App() {
             <Stack.Screen name="termsCondition" component={TermsCondition}/>
             <Stack.Screen name="Upcoming" component={UpcomingAppoinment}/>
             <Stack.Screen name="BookingAppoinment" component={BookingAppoinment}/>
-            
+            <Stack.Screen name="Connect" component={Connect}/>
+            <Stack.Screen name="childAppoinment" component={childAppoinment}/>
+            <Stack.Screen name="AppoinmentSomeone" component={AppoinmentSomeone}/>
+            <Stack.Screen name="Preceptions" component={Preception}/>
 
             {/* <Stack.Screen name="search" component={SearchScreen} />
             <Stack.Screen name="Videoplayer" component={VideoPlayer} /> */}
@@ -94,51 +99,3 @@ export default function App() {
   );
 }
 
-
-
-
-
-// /**
-//  * Sample React Native App
-//  * https://github.com/facebook/react-native
-//  *
-//  * @format
-//  * @flow strict-local
-//  */
-
-// import React from 'react';
-// import {
-//   SafeAreaView,
-//   StyleSheet,
-//   ScrollView,
-//   View,
-//   Text,
-//   StatusBar,
-// } from 'react-native';
-
-// import {
-//   Header,
-//   LearnMoreLinks,
-//   Colors,
-//   DebugInstructions,
-//   ReloadInstructions,
-// } from 'react-native/Libraries/NewAppScreen';
-// // import Home from './Component/Navigation/Home'
-// import Check from './check'
-// const App = () => {
-//   return (
-//     <>
-//       <StatusBar barStyle="dark-content" backgroundColor="#00aaff" />
-//       <View style={{flexDirection: "row", justifyContent: "space-around"}}>
-//       <Text>Hello World</Text>
-//       <Text>
-//         kldfjklfjkljjfz
-//       </Text>
-//       {/* <Home/> */}
-//       <Check/>
-//       </View>
-//      </>
-//   );
-// };
-
-// export default App;

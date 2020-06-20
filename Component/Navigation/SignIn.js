@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
-import { TextInput, Checkbox } from 'react-native-paper';
+import React, { useState, useEffect } from 'react';
 import HeaderSignin from '../HeaderSignIn'
-import { View, Picker, Image, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Text } from 'react-native';
+import { View, Picker, Image, StyleSheet,TextInput , KeyboardAvoidingView, Dimensions ,TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import IconFont from 'react-native-vector-icons/FontAwesome'; 
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { RFValue } from 'react-native-responsive-fontsize'
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
+import Footer from './Footer'
+import { useForm } from 'react-hook-form'
+import Password from './Password';
 
 export default function SignUp() {
 
@@ -13,59 +19,86 @@ export default function SignUp() {
     const [text2, setText2] = useState("")
     const [text3, setText3] = useState("")
     
+    const onsubmit = data =>{
+        console.log(data)
+    }
+    const [register ,handleSubmit, setValue]= useForm();
+
+    useEffect(() => {
+        register("Email")
+        Password("Password")
+    },[register])
 
     return (
-        <View style={{backgroundColor: "white", flex:1}}>
+        <View style={{backgroundColor: "white", flex: 1, paddingHorizontal: 20, flexDirection: "column", justifyContent: "space-between"}}>
             <HeaderSignin />
 
-            <TextInput
-                style={{ margin: 10 }}
-                label='Email Address'
-                value={text}
-                onChangeText={text => setText(text)}
-            />
-            <TextInput
-                style={{ margin: 10 }}
-                label='Password'
-                value={text2}
-                onChangeText={text => setText2(text)}
-            />
-            <Text style={{fontSize: 15,fontWeight: "bold", marginLeft: 10  }}
+            <View style={styles.textWrapper}>     
+            <View style={{marginTop: RFValue(80)}}></View>       
+            <TextInput style={styles.textInput}
+                    onChangeText={(text) => setForm({...)}
+                    placeholder={"Email Address"}
+                />
+            <View style={{marginTop: RFValue(20)}}></View>   
+                <TextInput style={styles.textInput}
+                    
+                    onChangeText={(text) => {
+                        setValue('Password', text)
+                    }}
+                    secureTextEntry={true}
+                    placeholder={"Password"}
+                />
+            <Text style={{fontSize: 15,fontWeight: "bold",  }}
             onPress={() => { navigation.navigate("forgetPassword") }}
             >I forgot my Password</Text>
 
+            <View style={{marginTop: RFValue(20)}}></View>             
             
-            <TextInput
-                style={{ margin: 20 }}
-                label='Enter Pin Code'
-                value={text3}
-                onChangeText={text => setText3(text)}
+            <TextInput style={styles.textInput}
+                onChangeText={(text) => {
+                    setValue('Pin', text)
+                }}
+                placeholder={"Enter Pin Code"}
             />
-            <Text style={{fontSize: 15,fontWeight: "bold", marginLeft: 10  }}
-                onPress={() => { navigation.navigate("forgetPin") }}
+            <Text style={{fontSize: 15,fontWeight: "bold",  }}
+                onPress={() => { 
+                    handleSubmit(onsubmit)
+                    navigation.navigate("forgetPin") }}
             >I forgot my Pin code</Text>
 
             <TouchableOpacity
                 style={styles.SubmitButtonStyle}
                 activeOpacity={.5}
-                onPress={() => { navigation.navigate("Upcoming") }}
+                onPress={() => { navigation.navigate("RouteHome") }}
             >
                 <Text style={styles.TextStyle}> Sing In </Text>
             </TouchableOpacity>
              
-            <View style={{ marginTop: 80, marginLeft: 30 }}>
+            <View style={{ marginTop: 80,  }}>
                 <IconFont name="arrow-circle-left" size={50} color="#2c97c9" 
                     onPress={() => { navigation.navigate("SignPage") }}
             />
-            
+            </View>
+                
+                <Footer/>
                 </View>
-             
-              </View>
+            </View>
     )
 }
 
 
 const styles = StyleSheet.create({
+    textInput: {
+        borderBottomColor: 'black', 
+        borderBottomWidth: RFValue(2), 
+        width: "100%"
+            
+    },
+    container: { flex: 1 },
+    textWrapper: {
+        height: hp('100%'), // 70% of height device screen
+        width: wp('90%')   // 80% of width device screen
+    },
     MainContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -76,13 +109,12 @@ const styles = StyleSheet.create({
         marginTop:10,
         paddingTop:15,
         paddingBottom:15,
-        marginLeft:30,
-        marginRight:30,
         backgroundColor:'white',
         borderRadius:10,
         borderWidth: 5,
         borderColor: 'lightblue',
-        marginTop: 60
+        marginTop: 60,
+        width: "100%"
       },
      
       TextStyle:{

@@ -1,13 +1,16 @@
 import React,{useState, useRef} from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity , KeyboardAvoidingView} from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { StyleSheet, Text, CheckBox,View, Image, TouchableOpacity , KeyboardAvoidingView, TextInput, Dimensions} from 'react-native';
 import { useNavigation, useTheme } from '@react-navigation/native'
 import  IconFont  from 'react-native-vector-icons/FontAwesome';
 // import { Header } from 'react-navigation-stack';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import  IconMaterial  from 'react-native-vector-icons/MaterialCommunityIcons'; 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { RFValue } from 'react-native-responsive-fontsize'
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
 import Header1 from '../Header'
+import Footer from './Footer'
 // import Checking from './checking'
 
 export default function Password() {
@@ -21,26 +24,18 @@ export default function Password() {
     const ref_input2 = useRef();
     const ref_input3 = useRef();
     const ref_input4 = useRef();
-
-    
+    const [isSelected, setSelection] = useState(false);
      const navigation = useNavigation();
         return (
-            <KeyboardAwareScrollView>
-            <View style={{backgroundColor: "white", flex:1}} >
-                
+            <KeyboardAwareScrollView style={{backgroundColor: "white"}} >
+            <View style={{ width: WIDTH, backgroundColor: "white", flex: 1, display: 'flex', paddingHorizontal: RFValue(20) }}>
+            <View style={styles.textWrapper}>
                 <Header1 />
                 <View style={{marginTop: 5}} >
-                <TextInput
-                    style={{ margin: 5, marginTop: -5 }}
-                    secureTextEntry={true}
-                    label='Password'
-                    value={text}
-                    onChangeText={text => setText(text)}
-                />
-                <TextInput
-                    label='Enter Phone number'
-                    value={textPhone}
-                    onChangeText={text => setTextPhone(text)}
+                
+                <TextInput style={styles.textInput}
+                    onChangeText={(text) => console.log(text)}
+                    placeholder={"Password"}
                 />
                 </View>
                 <View style={{flexDirection: "row", margin: 10}}>
@@ -124,11 +119,19 @@ export default function Password() {
                     onChangeText={code => this.setState({ code })}
                 /> */}
 
-                <View style={{flexDirection: "row", margin: 10}}>
-                <IconMaterial name="checkbox-blank-outline" size={24} color="black" />
-                <Text style={{fontSize: 20, marginLeft: 8, marginTop: -4 }}> i agree to Tibb Doctor's Terms of use & informed Constent and privacy policy </Text>
+                <View style={{ flexDirection: "row", marginTop: 20 }}>
+                            <CheckBox
+                                value={isSelected}
+                                onValueChange={setSelection}
+                                style={styles.checkbox}
+                            />
+               <Text style={{fontSize: 15, width: "80%", marginLeft: RFValue(10) }}>
+                    I agree to Tibb Doctor's Terms of use informed & Constent and privacy policy </Text>
                 </View>
-
+                
+                {/* < {isSelected ?  : "👎"} */}
+                
+                <View style={{marginTop: 30}}></View>
                 <TouchableOpacity
                     style={styles.SubmitButtonStyle}
                     activeOpacity={.5}
@@ -143,6 +146,10 @@ export default function Password() {
                     onPress={() => { navigation.navigate("signUp") }}
                 />
                 </View>
+                </View>
+            </View>
+            <View style={{marginTop: 30}}>
+            <Footer/>
             </View>
             </KeyboardAwareScrollView>
   );}
@@ -174,11 +181,19 @@ MainContainer: {
       fontWeight: "bold"
   },
   textWrapper: {
-    height: hp('70%'), // 70% of height device screen
-    width: wp('80%')   // 80% of width device screen
+    height: hp('90%'), // 70% of height device screen
+    width: wp('90%')   // 80% of width device screen
   },
-  myText: {
-    fontSize: hp('5%') // End result looks like the provided UI mockup
-  }
- 
+//   myText: {
+//     fontSize: hp('5%') // End result looks like the provided UI mockup
+//   },
+  textInput: {
+    borderBottomColor: 'black', 
+    borderBottomWidth: RFValue(2), 
+        
+    },
+    checkbox: {
+    alignSelf: "center",
+    },
+    
 });

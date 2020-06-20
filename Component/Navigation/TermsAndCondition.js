@@ -1,19 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions, ProgressBarAndroidComponent } from 'react-native';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons'; 
 import IconFont from 'react-native-vector-icons/FontAwesome'; 
 import { useNavigation, useTheme } from '@react-navigation/native'
+import { RFValue } from 'react-native-responsive-fontsize'
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
+import { useForm } from "react-hook-form";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Footer from './Footer'
+
 export default function TermsCondition(){
 
     const navigation = useNavigation();
     return(
-
-
-        <View style={styles.MainContainer}>
+        <View style={{ flex: 1, backgroundColor: "white", paddingHorizontal: RFValue(20)}}>
+        <View style={styles.textWrapper}>
             <View style={{flexDirection: "row",}}>
             <Image source={require('../../assets/tibLogoPng.png')}  
-            style={{width: 150, height:100, }}/>
-                <Text style={{ fontSize: 20, marginTop: 30, marginLeft: 10 }}>
+            style={{width: "40%", height:"110%", }}/>
+                <Text style={{ fontSize: 20, marginTop: 30,  }}>
                 Hi{"\n"}
                 Welcome Here
                 </Text>
@@ -21,10 +27,10 @@ export default function TermsCondition(){
                 <IconMaterial name="notifications-none" size={35} color="black" />       
                 </View>
         </View>
-        <View>
+            <View style={{marginTop: 20}}>     
             <View style={styles.childView}> 
             </View>
-
+            </View>
             <View style={{flexDirection: "row",}}>
             <IconMaterial name="account-circle" size={100} color="blue" />       
             <Text style={{ fontSize: 20, marginTop: 30, marginLeft: 10, margin: 40 }}>
@@ -35,13 +41,13 @@ export default function TermsCondition(){
             <View style={styles.childView}> 
             </View>
 
-            <Text style={{ fontSize: 30, fontWeight: "bold", marginTop: 30, marginLeft: 10, margin: 40 }}>
+            <Text style={{ fontSize: 25, marginTop: 30,  margin: 40 }}>
                 Terms & Conditions 
             </Text>
 
 
             <View style={{ flexDirection: "row", justifyContent: "space-between",marginTop: 200 }}>
-                <View style={{marginLeft: 30, marginTop:20 }}>
+                <View style={{ marginTop:20 }}>
                 <IconFont name="arrow-circle-left" size={50} color="#2c97c9" 
                     onPress={() => { navigation.navigate("password") }}
             />
@@ -56,26 +62,35 @@ export default function TermsCondition(){
 
             </TouchableOpacity>    
             </View>
-
             
+        
+        <View style={{marginTop: RFValue(60)}}>
+            <Footer/>
+            </View>
         </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
- 
-    MainContainer :{
-        
-        flex:1,
+    
+    container: { 
+        flex: 1,
+        paddingHorizontal: RFValue(10),
         backgroundColor: "white"
+        
     },
+    textWrapper: {
+        height: hp('100%'), // 70% of height device screen
+        width: wp('90%')   // 80% of width device screen
+      },
    
     childView: {
     
-      width: 500,
+      width: "100%",
       borderBottomWidth :3,
-      borderBottomColor: "black"
+      borderBottomColor: "black",
+      
    
     },
     SubmitButtonStyle: {
@@ -83,8 +98,7 @@ const styles = StyleSheet.create({
         marginTop:10,
         paddingTop:15,
         paddingBottom:15,
-        marginLeft:30,
-        marginRight:30,
+        
         backgroundColor:'white',
         borderRadius:10,
         borderWidth: 3,

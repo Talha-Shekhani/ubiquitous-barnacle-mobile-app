@@ -35,17 +35,13 @@ export default function UpcomingAppoinment(){
                 <TouchableOpacity
                     style={styles.SubmitButtonStyle}
                     activeOpacity={.5}
-                    onPress={()=>{navigation.navigate("BookingAppoinment")}}
+                    onPress={()=>{navigation.navigate("RouteHome")}}
                 >
 
                     <Text style={styles.TextStyle}> Search for HCP's</Text>
 
             </TouchableOpacity>  
                 </View>    
-
-
-                
-                
         </View>
 
 

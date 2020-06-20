@@ -9,45 +9,38 @@ const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 
-export default function Home(){
+export default function Connect(){
     const navigation = useNavigation();
 
     return(
         <View style={{width:WIDTH, backgroundColor: "white",flex:1,display: 'flex',paddingHorizontal: RFValue(20)}}>
-            <Text>
-                Home screen
-            </Text>
-            {/* <HeaderAfter/>
-            <Text 
-            style={{ fontSize: RFValue(28),fontWeight: "bold", margin : RFValue(10) }}
-            >
+            <HeaderAfter/>
+            <Text style={{ fontSize: RFValue(28),fontWeight: "bold", margin : RFValue(10) }}>
                 
-                    About Video consultation
+                    Connect
                 </Text>
                 <View style={styles.childView}>
-                    <Text style={{  fontSize: RFValue(25) }}
-                    onPress={() => { navigation.navigate("Connect") }}
-                    >
-                        1. What to expect from a video consultation 
+                    <Text style={{  fontSize: RFValue(25) }}>
+                        Myself
                      </Text>
                 </View>
 
                 <View style={styles.childView}>
                     <Text style={{  fontSize: RFValue(25) }}>
-                      2. How to Prepare before video consultant 
+                      My Child
                      </Text>
                 </View>    
 
                 <View style={styles.childView}>
                     <Text style={{  fontSize: RFValue(25)}}>
-                        3. FAQs
+                        Someone else
                      </Text>
                 </View>    
                 <View style={{ marginTop: RFValue(150) }}>
                 <IconFont name="arrow-circle-left" size={50} color="#2c97c9" 
                     onPress={() => { navigation.navigate("BookingAppoinment") }}
             />
-            </View> */}
+            </View>
           </View>
 
 

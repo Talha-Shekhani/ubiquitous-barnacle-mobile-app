@@ -12,8 +12,7 @@ export default function Header() {
             <Image source={require('../assets/tibLogoPng.png')}
               style={{width: "30%", height:"200%", marginTop: -10}}/>
                 <Text style={{fontSize: 20,fontWeight: "bold", marginTop: 10  }}
-                onPress={() => { navigation.navigate("signUp") }}
-                >Sign Up</Text>
+                onPress={() => { navigation.navigate("signUp") }}>Sign Up</Text>
             </View>
   );
 }
