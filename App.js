@@ -23,8 +23,11 @@ import Connect from './Component/Navigation/Connect'
 import childAppoinment from './Component/Navigation/ChildAppoinment'
 import AppoinmentSomeone from './Component/Navigation/AppoinmentSomeone'
 import Preception from './Component/Navigation/Preception'
+import { Provider } from 'react-redux'
+import { configureStore } from './redux/configureStore'
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const { store } = configureStore()
 
 const rootHome = ()=>{
   return (
@@ -70,8 +73,9 @@ const rootHome = ()=>{
 
 export default function App() {
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1}}  >
       {/* <StatusBar barStyle="dark-content" backgroundColor="#00aaff" /> */}
+      <Provider store={store}>
       <NavigationContainer > 
             <Stack.Navigator headerMode="none">
             <Stack.Screen name="FrontPage" component={FrontPage} />
@@ -95,6 +99,7 @@ export default function App() {
 
           </Stack.Navigator>
       </NavigationContainer>
+      </Provider>
     </View>
   );
 }
