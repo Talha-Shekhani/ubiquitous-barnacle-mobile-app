@@ -1,5 +1,6 @@
 export const P_SIGNIN = 'P_SIGNIN'
 export const P_SIGNUP = 'P_SIGNUP'
+export const P_SIGNIN_FAILED = 'P_SIGNIN_FAILED'
 
 export const DISHES_LOADING = 'DISHES_LOADING'
 export const DISHES_FAILED = 'DISHES_FAILED'

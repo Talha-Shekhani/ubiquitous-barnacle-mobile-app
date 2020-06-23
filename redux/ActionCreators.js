@@ -1,5 +1,10 @@
 import * as ActionTypes from './ActionTypes'
+import axios from 'axios'
+import { useNavigation, useTheme } from '@react-navigation/native'
 // import { baseUrl } from '../shared/baseUrl'
+
+// const navigation = useNavigation();
+
 
 export const p_signin = (values) => ({
     type: ActionTypes.P_SIGNIN,
@@ -11,7 +16,41 @@ export const p_signup = (values) => ({
     payload: values
 })
 
+export const p_signUpPage = (value) => (dispatch) => {
+                axios.post('http://192.168.1.104:5000/api/patient/insert/patients/details',
+                value
+                )
+                .then(response => dispatch(p_signup(value)))
+                .then(response => {
+                    console.log(response.data);
+                    // navigation.navigate.dispatch("RouteHome")
+                    // navigation.navigate("RouteHome")
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+            
+}
 
+export const p_signInPage = (value) => (dispatch) => {  
+    axios.post('http://192.168.1.104:5000/api/patient/login',
+    value
+    )
+    .then(response => dispatch(p_signin(response.data)))
+    // .then(response => {
+    //     // console.log(response.data);
+    //     // navigation.navigate("RouteHome")
+    // })
+    .catch(error => {
+        dispatch(p_signin_failed(error.message))
+    })
+
+}
+
+export const p_signin_failed = (err) => ({
+    type: ActionTypes.P_SIGNIN_FAILED,
+    payload: err
+})
 
 // export const addComment = (comment) => ({
 //     type: ActionTypes.ADD_COMMENT,

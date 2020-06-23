@@ -6,7 +6,7 @@ import {createStackNavigator } from '@react-navigation/stack'
 import  IconAnt  from 'react-native-vector-icons/AntDesign'; 
 import IconFont from 'react-native-vector-icons/Fontisto'; 
 import Home from './Component/Navigation/Home'
-import Contact from './Component/Navigation/Contact'
+import Connect from './Component/Navigation/Connect'
 import MyRecords from './Component/Navigation/MyRecords'
 import Setting from './Component/Navigation/Setting'
 import signUp from './Component/Navigation/SignUp'
@@ -19,15 +19,17 @@ import ForgetPIn from './Component/Navigation/ForgetPIn'
 import TermsCondition from './Component/Navigation/TermsAndCondition'
 import UpcomingAppoinment from './Component/Navigation/UpcomingAppoinment'
 import BookingAppoinment from './Component/Navigation/BookAppoinment'
-import Connect from './Component/Navigation/Connect' 
+// import Connect11 from './Component/Navigation/Contact11' 
 import childAppoinment from './Component/Navigation/ChildAppoinment'
 import AppoinmentSomeone from './Component/Navigation/AppoinmentSomeone'
 import Preception from './Component/Navigation/Preception'
 import { Provider } from 'react-redux'
 import { configureStore } from './redux/configureStore'
+
+
+const { store } = configureStore()
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-const { store } = configureStore()
 
 const rootHome = ()=>{
   return (
@@ -38,7 +40,7 @@ const rootHome = ()=>{
 
           if (route.name === 'Home') {
             iconName = "home"
-          } else if (route.name === 'Contact') {
+          } else if (route.name === 'Connect') {
             iconName2 = "world-o"
           }else if (route.name === 'MyRecords') {
             iconName = "printer"
@@ -57,12 +59,12 @@ const rootHome = ()=>{
         },
       })}
       tabBarOptions={{
-        activeTintColor: 'blue',
+        activeTintColor: 'red',
         inactiveTintColor: 'grey',
       }}
     >
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Contact" component={Contact} />
+        <Tab.Screen name="Connect" component={Connect} />
         <Tab.Screen name="MyRecords" component={MyRecords} />
         <Tab.Screen name="Setting" component={Setting} />
       </Tab.Navigator>
@@ -89,7 +91,7 @@ export default function App() {
             <Stack.Screen name="termsCondition" component={TermsCondition}/>
             <Stack.Screen name="Upcoming" component={UpcomingAppoinment}/>
             <Stack.Screen name="BookingAppoinment" component={BookingAppoinment}/>
-            <Stack.Screen name="Connect" component={Connect}/>
+            {/* <Stack.Screen name="Connect" component={Connect}/> */}
             <Stack.Screen name="childAppoinment" component={childAppoinment}/>
             <Stack.Screen name="AppoinmentSomeone" component={AppoinmentSomeone}/>
             <Stack.Screen name="Preceptions" component={Preception}/>

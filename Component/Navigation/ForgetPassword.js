@@ -7,6 +7,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 import Footer from './Footer'
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function ForgetPassword() {
 
@@ -14,26 +15,28 @@ export default function ForgetPassword() {
   const [text, setText] = useState("")
 
   return (
-    <View style={{backgroundColor: "white", flex: 1, paddingHorizontal: 20}}>
-              <View style={styles.textWrapper}>     
-    
+    <View style={styles.mainView}>
+            
+              <ScrollView showsVerticalScrollIndicator={false}>
             <Image source={require('../../assets/tibLogoPng.png')}  style={{width: 200, height:200, }}/>
             <View style={{marginBottom: 10}}>
-                <Text style={{fontSize: 25 }}>
+                <Text style={{fontSize: 22 }}>
                   Forgot My Password </Text>
                 </View>
               
                 <TextInput style={styles.textInput}
                 onChangeText={(text) => setForm({ ...form, lastName: text })}
                 placeholder={"Enter Your Email Address"}
+                placeholderTextColor="black"
                 />
+                
                 <View style={{marginTop: RFValue(20)}}></View>
                 <Text  numberOfLines={2} ellipsizeMode= 'middle'
-                style={{fontSize: 20, textAlign: "center" }}>
+                style={{fontSize: 16, textAlign: "center" }}>
                     We will send you a link to change 
                 </Text>
                 <Text
-                style={{ fontSize: 20, textAlign: "center" }}>
+                style={{ fontSize: 16, textAlign: "center" }}>
                    Your Password
                 </Text>
 
@@ -44,30 +47,34 @@ export default function ForgetPassword() {
             >
                 <Text style={styles.TextStyle}> SUBMIT </Text>
             </TouchableOpacity>
+            </ScrollView>
+            
+              <View>
+                <IconFont name="arrow-circle-left" size={50} color="#2c97c9"
+                  onPress={() => { navigation.navigate("signin") }}
+                />
 
-            <View style={{ marginTop: 80, marginLeft: 30 }}>
-                <IconFont name="arrow-circle-left" size={50} color="#2c97c9" 
-                    onPress={() => { navigation.navigate("signin") }}
-            />
-            </View>
-            <View style={{marginTop: RFValue(30)}}></View>
-              <Footer/>
-            </View>
+                <Footer />
+              </View>
             </View>
   );
 }
 
 
 const styles = StyleSheet.create({
+  
+  mainView: {
+    height: '100%',
+    width: '100%',
+    paddingHorizontal: RFValue(30),
+    paddingTop: RFValue(20),
+    backgroundColor: 'white',
+    justifyContent: 'space-between'
+  },
   textInput: {
     borderBottomColor: 'black',
     borderBottomWidth: RFValue(2),
 
-  },
-  container: { flex: 1 },
-  textWrapper: {
-    height: hp('90%'), // 70% of height device screen
-    width: wp('100%')   // 80% of width device screen
   },
     MainContainer: {
         flex: 1,
@@ -76,23 +83,33 @@ const styles = StyleSheet.create({
       },
      
       SubmitButtonStyle: {
-        marginTop:10,
-        paddingTop:15,
-        paddingBottom:15,
-        marginLeft:80,
-        marginRight:80,
+        marginTop:RFValue(10),
+        paddingTop:RFValue(15),
+        paddingBottom:RFValue(15),
+        alignItems: "center",
+        marginLeft: RFValue(50),
+        marginRight: RFValue(50),
         backgroundColor:'white',
-        borderRadius:3,
-        borderWidth: 2,
+        borderRadius:RFValue(7),
+        borderWidth: RFValue(3),
         borderColor: 'green',
-        marginTop: 60
+        marginTop: RFValue(60)
+        // marginTop:8,
+        // paddingTop:15,
+        // paddingBottom:15,
+        // marginLeft:80,
+        // marginRight:80,
+        // backgroundColor:'white',
+        // borderRadius:3,
+        // borderWidth: 3,
+        // borderColor: 'green',
+        // marginTop: 60
       },
      
       TextStyle:{
           color:'black',
           textAlign:'center',
-          fontSize: 18,
-          fontWeight: "bold"
+          fontSize: 16,
       }
      
 });

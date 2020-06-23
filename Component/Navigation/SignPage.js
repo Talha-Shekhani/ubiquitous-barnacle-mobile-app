@@ -6,14 +6,13 @@ import { RFValue } from 'react-native-responsive-fontsize'
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function SignPage(){
     const navigation = useNavigation();
     return(
-
-            <View style={{ width: WIDTH, backgroundColor: "white", flex: 1, display: 'flex', paddingHorizontal: RFValue(20) }}>
-                <View style={styles.textWrapper}>
-    
+         <View style={styles.mainView}>
+                <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{ alignItems: "center", marginTop: 80, }}>
                     <Image source={require('../../assets/tibLogoPng.png')}
                         style={{ width: RFValue(200), height: RFValue(200) }} />
@@ -33,12 +32,10 @@ export default function SignPage(){
                 >
                     <Text style={styles.TextStyle}> Sign Up </Text>
                 </TouchableOpacity>
-
-                <View style={{ marginTop: 190, alignItems: "center" }}>
-                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>Copyright {'\u00A9'}2020 Tib Doctor App</Text>
-                </View>
-            </View>
-            <View style={{marginTop: 16}}>
+                
+                </ScrollView>
+                <View>
+                    <Text style={{ fontSize: 16, fontWeight: "bold", textAlign: "center" }}>Copyright {'\u00A9'}2020 Tib Doctor App</Text>
                 <Footer />
             </View>
         </View>
@@ -49,7 +46,14 @@ export default function SignPage(){
 
 const styles = StyleSheet.create({
     
-     
+     mainView: {
+        width: "100%",
+        height: "100%",
+        paddingTop: RFValue(20),
+        paddingHorizontal: RFValue(30),
+        backgroundColor: "white",
+        justifyContent: "space-between"
+     },
       SubmitButtonStyle: {
      
         marginTop:10,

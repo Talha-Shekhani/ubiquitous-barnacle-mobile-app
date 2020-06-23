@@ -6,21 +6,24 @@ const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 import Footer from './Footer'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function FrontPage(){
     const navigation = useNavigation();
     return(
-        <View style={{ flex: 1, backgroundColor: "white", paddingHorizontal: RFValue(20)}}>
-        <View style={styles.textWrapper}>
-        
-            <View style={{ alignItems: "center", marginTop: RFValue(80) }}>
+        <View style={styles.mainView}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={{ alignItems: "center", marginTop: RFValue(50) }}>
                 <Image source={require('../../assets/tibLogoPng.png')}
-                    style={{ width: RFValue(200), height: RFValue(200) }} />
-                <Text style={{ fontSize: RFValue(20), fontWeight: "bold", marginTop: RFValue(-50) }}>Connecting HealthCare</Text>
-            </View >
+                    style={{ width: RFValue(200), height: RFValue(100) }} />
+                </View >
+                <Text style={{ fontSize: RFValue(20), fontWeight: "bold", textAlign: "center" }}>
+                     Tib ~ Connecting HealthCare
+                </Text>
             
-            <View style={{ marginTop: RFValue(30) }}>
+            
+            <View style={{ marginTop: RFValue(70) }}>
                 <TouchableOpacity
                     style={styles.SubmitButtonStyle}
                     activeOpacity={.5}
@@ -36,36 +39,38 @@ export default function FrontPage(){
                     <Text style={styles.TextStyle}> Members </Text>
                 </TouchableOpacity>
             </View>
-
-            <View style={{ marginTop: RFValue(220), alignItems: "center",  }}>
-                <Text style={{ fontSize: RFValue(20), fontWeight: "bold", marginTop: RFValue(-40) }}>Copyright {'\u00A9'}2020 Tib Doctor App</Text>
-            </View>
-            </View>
-            <View style={{ marginTop: RFValue(10)}}>
-                <Footer />
-            </View>
+            </ScrollView>
+            <View>
+                    <Text style={{ fontSize: RFValue(16), fontWeight: "bold", textAlign:"center" }}>
+                        Copyright {'\u00A9'}2020 Tib Doctor App
+                    </Text>
+                
+            <Footer />
+             </View>
             </View>
     )
 }
 
 
 const styles = StyleSheet.create({
-    
-    textWrapper: {
-        height: hp('100%'), // 70% of height device screen
-        width: wp('100%')   // 80% of width device screen
-      },
+    mainView: {
+        height: "100%",
+        width: "100%",
+        paddingHorizontal: RFValue(30),
+        paddingTop: RFValue(20),
+        backgroundColor: "white",
+        justifyContent: "space-between"
+    },
     
       SubmitButtonStyle: {
      
-        marginTop:RFValue(10),
-        paddingTop:RFValue(15),
-        paddingBottom:RFValue(15),
+        marginTop:10,
+        paddingTop:15,
+        paddingBottom:15,
         backgroundColor:'white',
-        borderRadius:RFValue(10),
-        borderWidth: RFValue(5),
-        borderColor: 'lightblue',
-        
+        borderRadius:10,
+        borderWidth: 5,
+        borderColor: 'lightblue'
       },
      
       TextStyle:{
@@ -74,6 +79,7 @@ const styles = StyleSheet.create({
           fontSize: 18,
           fontWeight: "bold"
       },
+     
       container: { flex: 1 },
       textWrapper: {
         height: hp('93%'), // 70% of height device screen
