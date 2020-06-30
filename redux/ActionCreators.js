@@ -1,6 +1,7 @@
 import * as ActionTypes from './ActionTypes'
 import axios from 'axios'
 import { useNavigation, useTheme } from '@react-navigation/native'
+import { baseUrl } from '../Component/baseUrl'
 // import { baseUrl } from '../shared/baseUrl'
 
 // const navigation = useNavigation();
@@ -17,38 +18,144 @@ export const p_signup = (values) => ({
 })
 
 export const p_signUpPage = (value) => (dispatch) => {
-                axios.post('http://192.168.1.104:5000/api/patient/insert/patients/details',
-                value
-                )
-                .then(response => dispatch(p_signup(value)))
-                .then(response => {
-                    console.log(response.data);
-                    // navigation.navigate.dispatch("RouteHome")
-                    // navigation.navigate("RouteHome")
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-            
+    axios.post(`${baseUrl}/api/patient/insert/patients/details`,
+        value
+    )
+        .then(response => dispatch(p_signup(value)))
+        .then(response => {
+            console.log(response.data);
+            // navigation.navigate.dispatch("RouteHome")
+            // navigation.navigate("RouteHome")
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
 }
 
-export const p_signInPage = (value) => (dispatch) => {  
-    axios.post('http://192.168.1.104:5000/api/patient/login',
-    value
+export const p_signInPage = (value) => (dispatch) => {
+    axios.post(`${baseUrl}/api/patient/login`,
+        value
     )
-    .then(response => dispatch(p_signin(response.data)))
-    // .then(response => {
-    //     // console.log(response.data);
-    //     // navigation.navigate("RouteHome")
-    // })
-    .catch(error => {
-        dispatch(p_signin_failed(error.message))
-    })
+        .then(response => dispatch(p_signin(response.data)))
+        // .then(response => {
+        //     // console.log(response.data);
+        //     // navigation.navigate("RouteHome")
+        // })
+        .catch(error => {
+            dispatch(p_signin_failed(error.message))
+        })
 
 }
 
 export const p_signin_failed = (err) => ({
     type: ActionTypes.P_SIGNIN_FAILED,
+    payload: err
+})
+
+export const p_change_password = (value) => (dispatch) => {
+    axios.post(`${baseUrl}/api/patient/updatePatientPassword`,
+        value
+    )
+    .then(response => 
+        {if (response.status === 200) {
+            return response.data
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText)
+            error.response = response
+            throw error
+        }})
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(err => {
+        dispatch(p_change_password_fail(err))
+    })
+}
+
+export const p_change_password_fail = (err) => ({
+    type: ActionTypes.P_CHANGE_PASSWORD_FAILED,
+    payload: err
+})
+
+export const p_getPatientDetails = (value) => (dispatch) => {
+    axios.get(`${baseUrl}/api/patient/getPatientProfile`,
+    value
+    )
+    .then(response => {
+        if (response.status === 200) {
+            return response.data
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText)
+            error.response = response
+            throw error
+        }
+    })
+    .then(response => dispatch(p_getPatient_type(response.data)))
+    .catch(err => {
+        // dispatch(p_change_password_fail(response))
+        console.log('Get Patient: ' + err)
+    })
+}
+
+export const p_getPatient_type = (value) => ({
+    type: ActionTypes.P_GET_PATIENT,
+    payload: value
+})
+
+export const p_change_pin = (value) => (dispatch) => {
+    axios.post(`${baseUrl}/api/patient/updatePatientPin`,
+        value
+    )
+    .then(response => {
+        if (response.status === 200) {
+            return response.data
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText)
+            error.response = response
+            throw error
+        }
+    })
+    .then(response => {
+        console.log('response: '+ response.data);
+    })
+    .catch(err => {
+        dispatch(p_change_pin_fail(err))
+    })
+}
+
+export const p_change_pin_fail = (err) => ({
+    type: ActionTypes.P_CHANGE_PASSWORD_FAILED,
+    payload: err
+})
+
+export const p_deactivate = (value) => (dispatch) => {
+    axios.post(`${baseUrl}/api/patient/accountDeactivate`,
+        value
+    )
+    .then(response => {
+        if (response.status === 200) {
+            return response.data
+        }
+        else {
+            var error = new Error('Error ' + response.status + ': ' + response.statusText)
+            error.response = response
+            throw error
+        }
+    })
+    .then(response => {
+        console.log('response: '+ response.data);
+    })
+    .catch(err => {
+        dispatch(p_deactivate_fail(err))
+    })
+}
+
+export const p_deactivate_fail = (err) => ({
+    type: ActionTypes.P_CHANGE_PASSWORD_FAILED,
     payload: err
 })
 

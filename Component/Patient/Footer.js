@@ -8,15 +8,12 @@ export default function footer(){
 
     
         return (
-            <View>
-                
                 <View style={styles.rowView}>
                     <View style={styles.yellow}></View>
                     <View style={styles.green}></View>
                     <View style={styles.blue}></View>
                     <View style={styles.red}></View>
                 </View>
-            </View>
         )
     
 }

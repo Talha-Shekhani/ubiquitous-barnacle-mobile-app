@@ -77,6 +77,10 @@ target 'devnastProject' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
+  pod 'RNSecureStorage', :path => '../node_modules/react-native-secure-storage'
+
   target 'devnastProjectTests' do
     inherit! :complete
     # Pods for testing
