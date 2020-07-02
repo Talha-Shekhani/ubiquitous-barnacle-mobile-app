@@ -20,19 +20,23 @@ import { useDispatch, useSelector } from 'react-redux'
 //   })
 
 function DrPassword(props) {
-    const dispatch = useDispatch()
-    const patient = useSelector(state => state)
+    // const dispatch = useDispatch()
+    // const patient = useSelector(state => state)
     const { handleSubmit, register, errors, setValue } = useForm();
 
-    const onSubmit = values => { var data = props.route.params.data; 
-        // console.log(JSON.stringify(Object.assign(data, values)))
-        dispatch(p_signUpPage(Object.assign(data, values)))
-        console.log(patient.patient.data)
-        navigation.navigate("termsCondition") 
+    const onSubmit = values => { 
+        
+        var data = props.route.params.data
+        var val = Object.assign(data, values)
+        console.log("password")
+        console.log(val)
+        // dispatch(d_signUpPage(val))
+        navigation.navigate('finish', {data: val})
     };
 
     useEffect(() => {
         register('p_password')
+        // register('p_pin')
     }, [register])
 
     const [text, setText] = useState("")
@@ -160,9 +164,10 @@ function DrPassword(props) {
                     <TouchableOpacity
                         style={styles.SubmitButtonStyle}
                         activeOpacity={.5}
-                        onPress={() => { navigation.navigate("finish") }}
-                    >
+                        onPress={handleSubmit(onSubmit)}
 
+                        // onPress={() => { navigation.navigate("finish") }}
+                    >
                         <Text style={styles.TextStyle}> CREATE ACCOUNT </Text>
 
                     </TouchableOpacity>

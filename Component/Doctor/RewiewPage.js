@@ -28,22 +28,17 @@ export default function RewiewPage(props) {
     //     navigation.navigate("spiciallydetail") 
     // };
     
-    const onSubmit = values => {
-        console.log(values)
-        navigation.navigate('specialitydetail', {data: values})
-    }
-    const [form, setForm] = useState({
-        primary: '',
-        yearly: '',
-        country: ''
-    })
+    const onSubmit = (values) => {
+        
 
-    useEffect(() => {
-        register('d_primary')
-        register('d_yearly')
-        register('d_country')
-        register('d_higher-degree')
-    }, [register])
+        var data = props.route.params.data
+        var val = Object.assign(data, values)
+        console.log("reveiw page")
+        console.log(val)
+        // dispatch(d_signUpPage(val))
+        navigation.navigate('DrTerms', {data: val})
+    }
+    
 
 
     return (
@@ -93,7 +88,9 @@ export default function RewiewPage(props) {
                     <View>
                         <View style={styles.arrow}>
                         <IconFont name="arrow-circle-right" size={50} color="#2c97c9"
-                            onPress={() => { navigation.navigate("DrTerms") }}
+                            // onPress={() => { navigation.navigate("DrTerms") }}
+                        onPress={handleSubmit(onSubmit)}
+
                         />
                         </View>
                        <Footer/>

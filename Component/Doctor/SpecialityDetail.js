@@ -15,8 +15,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 function SpecialityDetail(props) {
-    const dispatch = useDispatch()
-    const doctor = useSelector(state => state.doctor)
+    // const dispatch = useDispatch()
+    // const doctor = useSelector(state => state.doctor)
 
     const { handleSubmit, register, errors,setValue, getValues } = useForm();
     const navigation = useNavigation();
@@ -26,7 +26,7 @@ function SpecialityDetail(props) {
         var data = props.route.params.data
         var val = Object.assign(data, values)
         console.log(val)
-        dispatch(d_signUpPage(val))
+        // dispatch(d_signUpPage(val))
         navigation.navigate('rewiewpage', {data: val})
     }
     const [form, setForm] = useState({

@@ -17,7 +17,17 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 function TermsAndCondition(props) {
     const navigation = useNavigation();
+    const { handleSubmit, register, errors,setValue, getValues } = useForm();
    
+    const onSubmit = values => {
+        
+        var data = props.route.params.data
+        var val = Object.assign(data, values)
+        console.log("terms and condition")
+        console.log(val)
+        // dispatch(d_signUpPage(val))
+        navigation.navigate('drpassword', {data: val})
+    }
     return (
             <View style={styles.mainView}>
                 
@@ -53,7 +63,7 @@ function TermsAndCondition(props) {
                     <IconFont name="arrow-circle-right" size={40} color="#2c97c9"
                         style={{ marginRight: RFValue(10) }}
                         onPress={() =>{ navigation.navigate("drpassword")}}
-                        
+                        onPress={handleSubmit(onSubmit)}
                     />
                     </View>
                 </View>

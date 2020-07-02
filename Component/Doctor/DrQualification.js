@@ -24,6 +24,7 @@ function DrQualification(props) {
         var val = Object.assign(data, values)
         console.log(val)
         navigation.navigate('specialitydetail', {data: val})
+        
     }
     const [form, setForm] = useState({
         primary: '',

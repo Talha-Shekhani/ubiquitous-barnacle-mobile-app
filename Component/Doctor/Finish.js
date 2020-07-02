@@ -1,16 +1,28 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
+import React, { useState, useRef, Component, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, BackHandler } from 'react-native';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize'
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 import Footer from '../Patient/Footer'
+import { useForm } from 'react-hook-form'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
-export default function FrontPage(){
+export default function FrontPage(props){
     const navigation = useNavigation();
+    const { handleSubmit, register, errors, setValue } = useForm();
+
+    const onSubmit = values => { 
+        
+        var data = props.route.params.data
+        var val = Object.assign(data, values)
+        console.log("signup data : ")
+        console.log(val)
+        // dispatch(d_signUpPage(val))
+        navigation.navigate('drsignpage', {data: val})
+    };
     return(
         <View style={styles.mainView}>
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -34,7 +46,8 @@ export default function FrontPage(){
                 <TouchableOpacity
                     style={styles.SubmitButtonStyle}
                     activeOpacity={.5}
-                    onPress={() => { navigation.navigate("drsignpage") }}
+                    
+                    onPress={handleSubmit(onSubmit)}
                 >
                 <Text style={{ fontSize: RFValue(22), textAlign: "center" }}>
                     Finish </Text>
