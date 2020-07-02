@@ -17,6 +17,11 @@ export const p_signup = (values) => ({
     payload: values
 })
 
+export const d_signup = (values) => ({
+    type: ActionTypes.D_SIGNUP,
+    payload: values
+})
+
 export const p_signUpPage = (value) => (dispatch) => {
                 axios.post('http://192.168.1.112:5000/api/patient/insert/patients/details',
                 value
@@ -47,7 +52,19 @@ export const p_signInPage = (value) => (dispatch) => {
     })
 
 }
+export const d_signUpPage = (value) => (dispatch) => {
+    axios.post('http://192.168.1.112:5000/api/doctor/insert/doctors/details',
+    value
+    )
+    .then(response => dispatch(d_signup(response)))
+    .then(response => {
+        console.log(response);
+    })
+    .catch(error => {
+        console.log(error);
+    })
 
+}
 export const p_signin_failed = (err) => ({
     type: ActionTypes.P_SIGNIN_FAILED,
     payload: err

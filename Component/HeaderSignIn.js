@@ -5,7 +5,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
-export default function HamzaHeader(){
+export default function Header(){
     const navigation = useNavigation();
    
         return (

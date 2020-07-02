@@ -7,18 +7,15 @@ import { promotions } from './promotions'
 import { leaders } from './leaders'
 import { favorites } from './favorite'
 import { patient } from './patient'
+import { doctor } from './doctor'
 // import AsyncStorage from '@react-native-community/async-storage'
 
 export const configureStore = () => {
 
     const store = createStore(
         combineReducers( {
-            dishes,
-            comments,
-            promotions,
-            leaders,
-            favorites,
-            patient
+            patient,
+            doctor
         }),
         compose(
             applyMiddleware(thunk, logger)
