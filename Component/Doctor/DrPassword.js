@@ -24,15 +24,32 @@ function DrPassword(props) {
     // const patient = useSelector(state => state)
     const { handleSubmit, register, errors, setValue } = useForm();
 
-    const onSubmit = values => { 
-        
-        var data = props.route.params.data
-        var val = Object.assign(data, values)
-        console.log("password")
+    const onSubmit = values => {
+        var Demoraphicdata = props.route.params.Demoraphicdata;
+        var qulificationData = props.route.params.qulificationData
+        var specialityDetail = props.route.params.specialityDetail
+        // console.log(Demoraphicdata)
+        var val = Object.assign(Demoraphicdata, values)
+        console.log("Demographics")
         console.log(val)
-        // dispatch(d_signUpPage(val))
-        navigation.navigate('finish', {data: val})
-    };
+        console.log("Qualification Detail")
+        console.log(qulificationData)
+        console.log("Speciality Detail")
+        console.log(specialityDetail)
+        
+        navigation.navigate('finish', {Demoraphicdata: val, qulificationData: qulificationData,
+        specialityDetail: specialityDetail
+        })
+    }
+    // const onSubmit = values => { 
+        
+    //     var data = props.route.params.data
+    //     var val = Object.assign(data, values)
+    //     console.log("password")
+    //     console.log(val)
+    //     // dispatch(d_signUpPage(val))
+    //     navigation.navigate('finish', {data: val})
+    // };
 
     useEffect(() => {
         register('p_password')

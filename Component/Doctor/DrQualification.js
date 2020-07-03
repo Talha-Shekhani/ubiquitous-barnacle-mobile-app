@@ -20,10 +20,13 @@ function DrQualification(props) {
     const navigation = useNavigation();
 
     const onSubmit = values => {
-        var data = props.route.params.data;
-        var val = Object.assign(data, values)
-        console.log(val)
-        navigation.navigate('specialitydetail', {data: val})
+        var Demoraphicdata = props.route.params.Demoraphicdata;
+        console.log("Demographics")
+        console.log(Demoraphicdata)
+        console.log("Qualification Detail")
+        console.log(values)
+        // var val = Object.assign(data, values)
+        navigation.navigate('specialitydetail', {Demoraphicdata: Demoraphicdata, values: values  })
         
     }
     const [form, setForm] = useState({

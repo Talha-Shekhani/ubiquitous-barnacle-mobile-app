@@ -11,6 +11,7 @@ import { useForm } from 'react-hook-form'
 import { d_signUpPage } from '../../redux/ActionCreators';
 import { useDispatch, useSelector } from 'react-redux'
 import { ScrollView } from 'react-native-gesture-handler';
+import DrQualification from './DrQualification';
 // import { Button } from 'react-native-paper';
 
 
@@ -21,14 +22,28 @@ function SpecialityDetail(props) {
     const { handleSubmit, register, errors,setValue, getValues } = useForm();
     const navigation = useNavigation();
 
-
     const onSubmit = values => {
-        var data = props.route.params.data
-        var val = Object.assign(data, values)
-        console.log(val)
-        // dispatch(d_signUpPage(val))
-        navigation.navigate('rewiewpage', {data: val})
+        var Demoraphicdata = props.route.params.Demoraphicdata;
+        var qulificationData = props.route.params.values
+        console.log("Demographics")
+        console.log(Demoraphicdata)
+        console.log("Qualification Detail")
+        console.log(qulificationData)
+        console.log("Speciality Detail")
+        console.log(values)
+        // var val = Object.assign(data, values)
+        navigation.navigate('rewiewpage', {Demoraphicdata: Demoraphicdata, qulificationData: qulificationData,
+        specialityDetail: values
+        })
+        
     }
+    // const onSubmit = values => {
+    //     var data = props.route.params.data
+    //     var val = Object.assign(data, values)
+    //     console.log(val)
+    //     // dispatch(d_signUpPage(val))
+    //     navigation.navigate('rewiewpage', {data: val})
+    // }
     const [form, setForm] = useState({
         Speciality: '',
         SubSpeciality: '',

@@ -21,23 +21,33 @@ export default function RewiewPage(props) {
     const { handleSubmit, register, errors,setValue, getValues } = useForm();
     const navigation = useNavigation();
 
-    // const onSubmit = values => { var data = props.route.params.data; 
-    //     // console.log(JSON.stringify(Object.assign(data, values)))
-    //     // dispatch(p_signUpPage(Object.assign(data, values)))
-    //     // console.log(patient.patient.data)
-    //     navigation.navigate("spiciallydetail") 
-    // };
-    
-    const onSubmit = (values) => {
+    const onSubmit = () => {
+        var Demoraphicdata = props.route.params.Demoraphicdata;
+        var qulificationData = props.route.params.qulificationData
+        var specialityDetail = props.route.params.specialityDetail
+        console.log("Demographics")
+        console.log(Demoraphicdata)
+        console.log("Qualification Detail")
+        console.log(qulificationData)
+        console.log("Speciality Detail")
+        console.log(specialityDetail)
+
+        // var val = Object.assign(data, values)
+        navigation.navigate('DrTerms', {Demoraphicdata: Demoraphicdata, qulificationData: qulificationData,
+        specialityDetail: specialityDetail
+        })
+        
+    }  
+    // const onSubmit = (values) => {
         
 
-        var data = props.route.params.data
-        var val = Object.assign(data, values)
-        console.log("reveiw page")
-        console.log(val)
-        // dispatch(d_signUpPage(val))
-        navigation.navigate('DrTerms', {data: val})
-    }
+    //     var data = props.route.params.data
+    //     var val = Object.assign(data, values)
+    //     console.log("reveiw page")
+    //     console.log(val)
+    //     // dispatch(d_signUpPage(val))
+    //     navigation.navigate('DrTerms', {data: val})
+    // }
     
 
 

@@ -51,15 +51,21 @@ import DrThanks from './Component/Doctor/D_Thankyou'
 import DrSharePage from './Component/Doctor/D_SharePage'
 import DrCounsultant from './Component/Doctor/ConsultantFee'
 import DrChangeConsultant from './Component/Doctor/ChangeConsultantFee'
-
-import { Provider } from 'react-redux'
-import { configureStore } from './redux/configureStore'
 import UploadPitures from './Component/Doctor/UploadPitures';
 import RewiewPage from './Component/Doctor/RewiewPage';
 import ChangeConsultant from './Component/Doctor/ChangeConsultantFee';
 import DrHomePayment from './Component/Doctor/HomePaymentMethod'
 import DrBank from './Component/Doctor/PaymentBank'
 import DrPaypal from './Component/Doctor/PaymentPaypal'
+import MyAppoinment from './Component/Doctor/MyAppoinment'
+import DrUpcomingAppoinment from './Component/Doctor/UpcomingAppoinments'
+import DrPreviousAppoinment from './Component/Doctor/PreviousAppoinment'
+import DrConnectTibDctor from './Component/Doctor/connectTibDctor'
+import DrPatientDetail from './Component/Doctor/PatientDetail'
+
+
+import { Provider } from 'react-redux'
+import { configureStore } from './redux/configureStore'
 
 const { store } = configureStore()
 const Tab = createBottomTabNavigator();
@@ -204,10 +210,15 @@ export default function App() {
             <Stack.Screen name="DrThanks" component={DrThanks}/>
             <Stack.Screen name="DrCounsultant" component={DrCounsultant}/>
             <Stack.Screen name="share" component={DrSharePage}/>
-            <Stack.Screen name="changeConsultant" component={ChangeConsultant}/>
+            <Stack.Screen name="changeConsultant" component={DrChangeConsultant}/>
             <Stack.Screen name="HomePayment" component={DrHomePayment}/>
             <Stack.Screen name="bank" component={DrBank}/>
             <Stack.Screen name="paypal" component={DrPaypal}/>
+            <Stack.Screen name="myapoinment" component={MyAppoinment}/>
+            <Stack.Screen name="drupcomingappoinments" component={DrUpcomingAppoinment}/>
+            <Stack.Screen name="drPreviousAppoinment" component={DrPreviousAppoinment}/>
+            <Stack.Screen name="Connectdoctor" component={DrConnectTibDctor}/>
+            <Stack.Screen name="DrpatientDetail" component={DrPatientDetail}/>
 
 
 

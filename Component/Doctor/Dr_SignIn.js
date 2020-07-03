@@ -30,7 +30,6 @@ export default function Signin(){
         if(patient.patient.data.success === 0 )
         {
             // navigation.navigate("RouteHome")
-
         }
         else if (patient.patient.errMess){
             alert('Error : ' + patient.patient.errMess)

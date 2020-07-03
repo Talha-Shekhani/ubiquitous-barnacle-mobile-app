@@ -19,14 +19,30 @@ function TermsAndCondition(props) {
     const navigation = useNavigation();
     const { handleSubmit, register, errors,setValue, getValues } = useForm();
    
-    const onSubmit = values => {
+    // const onSubmit = values => {
         
-        var data = props.route.params.data
-        var val = Object.assign(data, values)
-        console.log("terms and condition")
-        console.log(val)
-        // dispatch(d_signUpPage(val))
-        navigation.navigate('drpassword', {data: val})
+    //     var data = props.route.params.data
+    //     var val = Object.assign(data, values)
+    //     console.log("terms and condition")
+    //     console.log(val)
+    //     // dispatch(d_signUpPage(val))
+    //     navigation.navigate('drpassword', {data: val})
+    // }
+
+    const onSubmit = values => {
+        var Demoraphicdata = props.route.params.Demoraphicdata;
+        var qulificationData = props.route.params.qulificationData
+        var specialityDetail = props.route.params.specialityDetail
+        console.log("Demographics")
+        console.log(Demoraphicdata)
+        console.log("Qualification Detail")
+        console.log(qulificationData)
+        console.log("Speciality Detail")
+        console.log(specialityDetail)
+        // var val = Object.assign(data, values)
+        navigation.navigate('drpassword', {Demoraphicdata: Demoraphicdata, qulificationData: qulificationData,
+        specialityDetail: specialityDetail
+        })
     }
     return (
             <View style={styles.mainView}>
@@ -50,8 +66,8 @@ function TermsAndCondition(props) {
                     <TouchableOpacity
                         style={styles.SubmitButtonStyle}
                         activeOpacity={.5}
-                        // onPress={handleSubmit(onSubmit)}
-                        onPress={() =>{ navigation.navigate("drpassword")}}
+                        onPress={handleSubmit(onSubmit)}
+                        // onPress={() =>{ navigation.navigate("drpassword")}}
 
 
                     >
@@ -62,7 +78,7 @@ function TermsAndCondition(props) {
                     </TouchableOpacity>
                     <IconFont name="arrow-circle-right" size={40} color="#2c97c9"
                         style={{ marginRight: RFValue(10) }}
-                        onPress={() =>{ navigation.navigate("drpassword")}}
+                        // onPress={() =>{ navigation.navigate("drpassword")}}
                         onPress={handleSubmit(onSubmit)}
                     />
                     </View>

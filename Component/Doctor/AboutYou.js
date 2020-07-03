@@ -54,7 +54,9 @@ export default function DrSignUp() {
                 <TouchableOpacity
                         style={styles.SubmitButtonStyle}
                         activeOpacity={.5}
-                        onPress={() => {navigation.navigate("uploadpitures")} }
+                        // onPress={() => {navigation.navigate("uploadpitures")} }
+                    onPress={handleSubmit(onSubmit)}
+
                     >
 
                         <Text style={{fontSize: RFValue(16), textAlign: "center"}}> SUBMIT </Text>

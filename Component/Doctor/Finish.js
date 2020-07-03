@@ -14,15 +14,34 @@ export default function FrontPage(props){
     const navigation = useNavigation();
     const { handleSubmit, register, errors, setValue } = useForm();
 
-    const onSubmit = values => { 
+    const onSubmit = values => {
+        var Demoraphicdata = props.route.params.Demoraphicdata;
+        var qulificationData = props.route.params.qulificationData
+        var specialityDetail = props.route.params.specialityDetail
+        // console.log(Demoraphicdata)
+        // var val = Object.assign(Demoraphicdata, values)
+        console.log("after finish")
+        console.log("Demographics")
+        console.log(Demoraphicdata)
+        console.log("Qualification Detail")
+        console.log(qulificationData)
+        console.log("Speciality Detail")
+        console.log(specialityDetail)
         
-        var data = props.route.params.data
-        var val = Object.assign(data, values)
-        console.log("signup data : ")
-        console.log(val)
-        // dispatch(d_signUpPage(val))
-        navigation.navigate('drsignpage', {data: val})
-    };
+        navigation.navigate('drsignpage', {Demoraphicdata: Demoraphicdata, qulificationData: qulificationData,
+        specialityDetail: specialityDetail
+        })
+    }
+
+    // const onSubmit = values => { 
+        
+    //     var data = props.route.params.data
+    //     var val = Object.assign(data, values)
+    //     console.log("signup data : ")
+    //     console.log(val)
+    //     // dispatch(d_signUpPage(val))
+    //     navigation.navigate('drsignpage', {data: val})
+    // };
     return(
         <View style={styles.mainView}>
         <ScrollView showsVerticalScrollIndicator={false}>

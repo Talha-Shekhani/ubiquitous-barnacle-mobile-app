@@ -16,8 +16,9 @@ export default function DrSignUp() {
     const navigation = useNavigation();
 
     const onSubmit = values => {
+        console.log("Demographics")
         console.log(values)
-        navigation.navigate('drqualification', {data: values})
+        navigation.navigate('drqualification', {Demoraphicdata: values})
     }
     
     const [form, setForm] = useState({
